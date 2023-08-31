@@ -7,7 +7,7 @@ require("rpart")
 require("rpart.plot")
 
 # Aqui se debe poner la carpeta de la materia de SU computadora local
-setwd("X:\\gdrive\\austral2023ba\\") # Establezco el Working Directory
+setwd("/home/cavilla_jonas/buckets/b1") # Establezco el Working Directory
 
 # cargo el dataset
 dataset <- fread("./datasets/dataset_pequeno.csv")
@@ -22,9 +22,9 @@ modelo <- rpart(
         data = dtrain, # los datos donde voy a entrenar
         xval = 0,
         cp = -0.75, # esto significa no limitar la complejidad de los splits
-        minsplit = 000, # minima cantidad de registros para que se haga el split
-        minbucket = 32, # tamaño minimo de una hoja
-        maxdepth = 8
+        minsplit = 600, # minima cantidad de registros para que se haga el split
+        minbucket = 150, # tamaño minimo de una hoja
+        maxdepth = 10
 ) # profundidad maxima del arbol
 
 
@@ -60,6 +60,6 @@ dir.create("./exp/KA2001")
 
 # solo los campos para Kaggle
 fwrite(dapply[, list(numero_de_cliente, Predicted)],
-        file = "./exp/KA2001/K101_001.csv",
+        file = "./exp/KA2001/K101_020.csv",
         sep = ","
 )
